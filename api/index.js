@@ -1,10 +1,10 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
 const express = require("express");
-const rateLimit = require("express-rate-limit");
+// const rateLimit = require("express-rate-limit");
 const { query, validationResult } = require("express-validator");
 const cors = require("cors");
-const helmet = require("helmet");
+// const helmet = require("helmet");
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -18,19 +18,19 @@ app.use(cors({
 }));
 
 // Other middleware
-app.use(helmet());
+// app.use(helmet());
 app.use(express.json());
 
 // Add a pre-flight route handler
 app.options('*', cors());
 
 // Rate limiting
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // Limit each IP to 100 requests per windowMs
-  message: "Too many requests from this IP, please try again later.",
-});
-app.use("/api", limiter);
+// const limiter = rateLimit({
+//   windowMs: 15 * 60 * 1000, // 15 minutes
+//   max: 100, // Limit each IP to 100 requests per windowMs
+//   message: "Too many requests from this IP, please try again later.",
+// });
+// app.use("/api", limiter);
 
 /**
  * Fetches metadata from a given URL including title, description, images, and Open Graph data
