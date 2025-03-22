@@ -11,15 +11,15 @@ const port = process.env.PORT || 3000;
 
 // Security middleware
 app.use(helmet()); // Adds various HTTP headers for security
-// app.use(
-//   cors({
-//     origin: [
-//       'https://keevospace.vercel.app',
-//       'http://localhost:3000' 
-//     ],
-//     methods: ["GET"],
-//   })
-// );
+app.use(
+  cors({
+    origin: [
+      'https://keevospace.vercel.app',
+      'http://localhost:3000' 
+    ],
+    methods: ["GET"],
+  })
+);
 app.use(express.json());
 
 // Rate limiting
