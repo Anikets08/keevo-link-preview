@@ -13,9 +13,10 @@ const port = process.env.PORT || 3000;
 app.use(helmet()); // Adds various HTTP headers for security
 app.use(
   cors({
-    origin: process.env.ALLOWED_ORIGINS
-      ? process.env.ALLOWED_ORIGINS.split(",")
-      : "*",
+    origin: [
+      'https://keevospace.vercel.app',
+      'http://localhost:3000' 
+    ],
     methods: ["GET"],
   })
 );
