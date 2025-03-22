@@ -9,17 +9,20 @@ const helmet = require("helmet");
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Security middleware
-app.use(helmet()); // Adds various HTTP headers for security
-app.use(
-  cors({
-    origin: [
-      "*"
-    ],
-    methods: ["GET"],
-  })
-);
+// CORS configuration - place this BEFORE other middleware
+app.use(cors({
+  origin: '*',
+  methods: ['GET'],
+  credentials: false,
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
+// Other middleware
+app.use(helmet());
 app.use(express.json());
+
+// Add a pre-flight route handler
+app.options('*', cors());
 
 // Rate limiting
 const limiter = rateLimit({
